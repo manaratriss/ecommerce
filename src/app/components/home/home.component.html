@@ -1,0 +1,83 @@
+<!-- slider main  -->
+<section class="mt-5 pt-5">
+  <h2 class="text-main">Popular main</h2>
+  <div class="row g-0">
+    <div class="col-md-10">
+      <div>
+        <owl-carousel-o [options]="mainCustomOptions">
+          <ng-template carouselSlide>
+            <img src="./assets/images/slider-image-3.jpeg" height="300px" class="w-100" alt="">
+          </ng-template>
+          <ng-template carouselSlide>
+            <img src="./assets/images/slider-image-1.jpeg" height="300px" class="w-100" alt="">
+          </ng-template>
+          <ng-template carouselSlide>
+            <img src="./assets/images/slider-image-2.jpeg" height="300px" class="w-100" alt="">
+          </ng-template>
+          <ng-template carouselSlide>
+            <img src="./assets/images/slider-image-1.jpeg" height="300px" class="w-100" alt="">
+          </ng-template>
+        </owl-carousel-o>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <img src="./assets/images/slider-image-1.jpeg" height="150px" class="w-100 " alt="">
+      <img src="./assets/images/slider-image-2.jpeg" height="150px" class="w-100 " alt="">
+    </div>
+  </div>
+
+</section>
+<!-- slider categories -->
+<section class="mt-5">
+  <h2 class="text-main">Popular Categories</h2>
+  <owl-carousel-o [options]="categoriesCustomOptions">
+    @for (categories of categoriesList(); track categories._id) {
+
+    <ng-template carouselSlide>
+      <img [src]="categories.image" height="300px" class="w-100" [alt]="categories.name">
+      <h3 class="h6 text-main">{{categories.name}}</h3>
+    </ng-template>
+    }
+
+  </owl-carousel-o>
+
+</section>
+
+
+
+<section class="my-5">
+  <h2 class="text-main">Popular Products</h2>
+  <div class="row ">
+    @for (product of productList().slice(0,20);
+    track product.id) {
+    <div class="col-md-2 mt-2 ">
+      <div class="product p-2">
+        <span (click)="(addToWishlist(product.id))" class="cursor-pointer d-flex justify-content-end my-2"><i
+            [ngStyle]="{'color': product.isFavorite ? '#09c' : 'red'}" (click)="(toggleliked(product))"
+            class="fa-solid fa-heart  fa-2x"></i></span>
+        <div [routerLink]="['/details',product.id]">
+          <img [src]="product.imageCover" [alt]="product.title" class="w-100">
+          <h4 class="text-main small">{{product.category.name}}</h4>
+          <h3 class="h6">{{product.title| termText:2}}</h3>
+          <div class="d-flex  flex-column ">
+            <span>{{product.price| currency:"GBP"}}</span>
+            <div>
+              @for (num of [1,2,3,4,5].slice(0,product.ratingsAverage); track $index) {
+              <span><i class="fas fa-star rating-color"></i></span>
+              }
+              @if (product.ratingsAverage %1 !== 0) {
+              <span><i class="fa-solid fa-star-half  rating-color"></i></span>
+              }
+              <span class="text-muted">{{product.ratingsAverage}}</span>
+            </div>
+          </div>
+        </div>
+        <button (click)="addProductCart(product.id)" class="btn-main w-100">
+            <i class="fa-solid fa-cart-shopping "></i>
+          Add Cart </button>
+      </div>
+    </div>
+    }
+  </div>
+</section>
+ 

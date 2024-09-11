@@ -1,0 +1,15 @@
+<section class="my-5 p-5">
+  <h1 class="text-main text-center">All Categories: </h1>
+  <div class="row g-2">
+    @for (Category of categoriesList ; track Category._id) {
+    <div class="col-md-3 ">
+      <div class="product p-2  " >
+        <div class="cursor-pointer" [routerLink]="['/specificCategory',Category._id]">
+          <img [src]="Category.image" height="300px"  class="w-100" [alt]="Category.name">
+          <h4 class=" text-center fw-bold">{{Category.name}}</h4>
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+</section>

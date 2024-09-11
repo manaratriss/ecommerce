@@ -1,0 +1,24 @@
+<section class="my-5  p-5">
+
+  <div class="row g-2">
+    @for (order of allOrders?.data; track $index) {
+    <div class="col-12">
+      <div class="row">
+        @for (item of order.cartItems; track $index) {
+          <div class="row align-items-center g-3">
+            <div class="col-lg-3 product ">
+              <img [src]="item.product.imageCover" class="w-100" [alt]="item.name">
+            </div>
+            <div class="col-lg-9">
+              <h3>{{item.product.title|termText:2}}</h3>
+              <p></p>
+              <p>Price: {{item.price | currency:"GBP" }}</p>
+
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+    }
+  </div>
+</section>

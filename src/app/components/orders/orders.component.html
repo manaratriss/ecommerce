@@ -1,0 +1,42 @@
+<section class="my-5 ">
+  <div class="container bg-main-light shadow p-2 my-2 rounded-4">
+    <h1 class="text-main text-center">shippingAddress </h1>
+    <form [formGroup]="ordersForm" (ngSubmit)="orderSubmit()">
+      <div class="my-2">
+        <label for="details">Details
+        </label>
+        <textarea formControlName="details" class="form-control" id="details"></textarea>
+        @if (ordersForm.get("details")?.errors && (ordersForm.get("details")?.touched) ) {
+        <div class="alert alert-danger my-2">
+          @if (ordersForm.get("details")?.getError("required")) {
+          <p class="m-0">details is Required</p>
+          }
+        </div>
+        }
+      </div>
+      <div class="my-2">
+        <label for="phone">Phone</label>
+        <input formControlName="phone" id="phone" type="tel" class="form-control">
+        @if (ordersForm.get("phone")?.errors && (ordersForm.get("phone")?.touched) ) {
+        <div class="alert alert-danger my-2">
+          @if (ordersForm.get("phone")?.getError("required")) {
+          <p class="m-0">phone is Required</p>
+          }
+        </div>
+        }
+      </div>
+      <div class="my-2">
+        <label for="city">City</label>
+        <input formControlName="city" id="city" type="text" class="form-control">
+        @if (ordersForm.get("city")?.errors && (ordersForm.get("city")?.touched) ) {
+        <div class="alert alert-danger my-2">
+          @if (ordersForm.get("city")?.getError("required")) {
+          <p class="m-0">city is Required</p>
+          }
+        </div>
+        }
+      </div>
+      <button class="btn-main" type="submit">CheckOut</button>
+    </form>
+  </div>
+</section>
